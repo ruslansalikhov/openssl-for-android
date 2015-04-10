@@ -1,0 +1,5 @@
+install
+lib
+include
+src
+*.gz
