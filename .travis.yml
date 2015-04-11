@@ -2,11 +2,12 @@ language: C
 env:
 before_install:
   - sudo apt-get update -qq -y
-  - sudo apt-get install -qq -y p7zip xutils-dev
-  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin -O ndk.bin
-  - md5sum ndk.bin | grep 263b83071e6bca15f67898548d8d236e
-  - 7zr x ndk.bin $(sed 's/^/ -xr!/g' ndk-excludes.txt) | awk '/^Extracting/ { i++; if (i > 50) {print; i = 0}}'
-  - export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r10d
-  - find /home/travis/build/ruslansalikhov/openssl-for-android/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64/bin
+  - sudo apt-get install -qq -y libgd2-xpm ia32-libs ia32-libs-multiarch p7zip
+  - sudo apt-get install -qq -y xutils-dev 
+  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r9d-linux-x86.tar.bz2 -O ndk.tar.bz2
+  - md5sum ndk.tar.bz2
+  - tar -xf ndk.tar.bz2
+  - rm ndk.tar.bz2
+  - export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r9d
 script:
   - ./build-libssl.sh
