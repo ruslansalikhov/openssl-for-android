@@ -2,10 +2,10 @@ language: C
 env:
 before_install:
   - sudo apt-get update -qq -y
-  - sudo apt-get install -qq -y libgd2-xpm ia32-libs ia32-libs-multiarch p7zip
-  - sudo apt-get install -qq -y xutils-dev 
-  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86.bin -O ndk.bin
-  - md5sum ndk.bin | grep 70ed6d8c34e7e620c145b791e8eeef89
+  - sudo apt-get install -qq -y p7zip xutils-dev
+  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin -O ndk.bin
+#  - md5sum ndk.bin | grep 70ed6d8c34e7e620c145b791e8eeef89
+  - md5sum ndk.bin 
   - 7zr x ndk.bin $(sed 's/^/ -xr!/g' ndk-excludes.txt) | awk '/^Extracting/ { i++; if (i > 50) {print; i = 0}}'
   - export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r10d
 script:
