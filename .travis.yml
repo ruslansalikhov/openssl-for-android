@@ -3,7 +3,7 @@ sudo: false
 env:
 before_install:
   - export TERM=dumb
-  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.tar.bz2
+  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
   - chmod u+x android-ndk-r10e-linux-x86_64.bin
   - md5sum android-ndk-r10e-linux-x86_64.bin #| grep 6c1d7d99f55f0c17ecbcf81ba0eb201f
   - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
