@@ -21,4 +21,4 @@ deploy:
   file: openssl-for-android/openssl-*.tar.gz
   skip_cleanup: true
   on:
-    tags: false
+    tags: true
