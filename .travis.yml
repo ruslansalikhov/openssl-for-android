@@ -11,7 +11,10 @@ before_install:
   - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
   - export ANDROID_NDK_ROOT=`pwd`/android-ndk-r10e
   - export PATH=$PATH:${ANDROID_NDK_HOME}
+  - pwd
 script:
+  - pwd
   - bash ./build-libssl.sh
 after_script:
-  - find
+  - find include
+  - find lib
