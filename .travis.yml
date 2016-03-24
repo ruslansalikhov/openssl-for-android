@@ -15,6 +15,3 @@ before_install:
 script:
   - pwd
   - bash ./build-libssl.sh
-after_script:
-  - find include
-  - find lib
