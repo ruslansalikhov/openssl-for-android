@@ -1,13 +1,17 @@
 language: C
+sudo: false
 env:
 before_install:
-  - sudo apt-get update -qq -y
-  - sudo apt-get install -qq -y libgd2-xpm ia32-libs ia32-libs-multiarch p7zip
-  - sudo apt-get install -qq -y xutils-dev 
-  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r9d-linux-x86.tar.bz2 -O ndk.tar.bz2
-  - md5sum ndk.tar.bz2 | grep 6c1d7d99f55f0c17ecbcf81ba0eb201f
-  - tar -xf ndk.tar.bz2
-  - rm ndk.tar.bz2
-  - export ANDROID_NDK_ROOT=$(pwd)/android-ndk-r9d
+  - export TERM=dumb
+  - wget -q --timeout=120 http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.tar.bz2
+  - chmod u+x android-ndk-r10e-linux-x86_64.bin
+  - md5sum android-ndk-r10e-linux-x86_64.bin #| grep 6c1d7d99f55f0c17ecbcf81ba0eb201f
+  - ./android-ndk-r10e-linux-x86_64.bin > /dev/null
+  - rm android-ndk-r10e-linux-x86_64.bin
+  - export ANDROID_NDK_HOME=`pwd`/android-ndk-r10e
+  - export ANDROID_NDK_ROOT=`pwd`/android-ndk-r10e
+  - export PATH=$PATH:${ANDROID_NDK_HOME}
 script:
-  - ./build-libssl.sh
+  - bash ./build-libssl.sh
+after_script:
+  - find
