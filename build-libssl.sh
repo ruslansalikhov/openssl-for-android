@@ -95,12 +95,13 @@ mkdir -p $BASEDIR/include
 cp -v libssl.{a,so} libcrypto.{a,so} $BASEDIR/lib
 cp -rvL include/openssl $BASEDIR/include
 
-tar -czf openssl-android-${VERSION}.tar.gz include lib
 
 #make install CC=$ANDROID_TOOLCHAIN/arm-linux-androideabi-gcc RANLIB=$ANDROID_TOOLCHAIN/arm-linux-androideabi-ranlib
 
-popd
+popd # sources
 
-popd
+tar -czf openssl-android-${VERSION}.tar.gz include lib
+
+popd #basedir
 
 exit 0

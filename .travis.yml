@@ -15,3 +15,10 @@ before_install:
 script:
   - pwd
   - bash ./build-libssl.sh
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: openssl-*.tar.gz
+  skip_cleanup: true
+  on:
+    tags: true
