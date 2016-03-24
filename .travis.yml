@@ -15,10 +15,14 @@ before_install:
 script:
   - pwd
   - bash ./build-libssl.sh
+before_deploy:
+  - export RELEASE_FILE=$(ls openssl-android-*.tar.gz)
+  - echo "Deploying $RELEASE_FILE to GitHub releases"
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  file: openssl-android-*.tar.gz
+  file_glob: true
+  file: "${RELEASE_FILE}"
   skip_cleanup: true
   on:
     tags: true
